@@ -21,3 +21,10 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+
+// utils.mjs
+export function getParam(param) {
+  const queryString = window.location.search;      // gets "?product=880RR"
+  const urlParams = new URLSearchParams(queryString); // makes it easy to read params
+  return urlParams.get(param);                     // returns the value for "param"
+}
