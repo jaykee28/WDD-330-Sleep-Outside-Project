@@ -1,14 +1,5 @@
 import ProductData from "./ProductData.mjs";
-import ProductData from "./ProductList.mjs";
-const productData = new ProductData();
-
-async function init() {
-  const products = await productData.getData("tents");
-
-  console.log(products);
-}
-
-init();
+import ProductList from "./ProductList.mjs";
 
 // get HTML element where products will go
 const listElement = document.querySelector(".product-list");

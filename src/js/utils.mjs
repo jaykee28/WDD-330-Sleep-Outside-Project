@@ -44,21 +44,3 @@ export function renderListWithTemplate(
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
-export function renderListWithTemplate(
-  templateFn,
-  parentElement,
-  list,
-  position = "afterbegin",
-  clear = false
-) {
-  // clear content if needed
-  if (clear) {
-    parentElement.innerHTML = "";
-  }
-
-  // create HTML
-  const htmlStrings = list.map(templateFn);
-
-  // insert into DOM
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
-}
