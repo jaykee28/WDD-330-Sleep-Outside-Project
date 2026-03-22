@@ -28,3 +28,37 @@ export function getParam(param) {
   const urlParams = new URLSearchParams(queryString); // makes it easy to read params
   return urlParams.get(param);                     // returns the value for "param"
 }
+
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false
+) {
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+
+  const htmlStrings = list.map(templateFn);
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false
+) {
+  // clear content if needed
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+
+  // create HTML
+  const htmlStrings = list.map(templateFn);
+
+  // insert into DOM
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
