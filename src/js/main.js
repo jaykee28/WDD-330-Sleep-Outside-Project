@@ -1,5 +1,6 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 
 // get HTML element where products will go
 const listElement = document.querySelector(".product-list");
@@ -10,5 +11,8 @@ const dataSource = new ProductData("tents");
 // create product list instance
 const productList = new ProductList("tents", dataSource, listElement);
 
+loadHeaderFooter();
+
 // initialize
 productList.init();
+
