@@ -7,6 +7,7 @@ export default defineConfig({
   build: {
     outDir: "../dist",
     rollupOptions: {
+<<<<<<< HEAD
   input: {
     main: resolve(__dirname, "src/index.html"),
     cart: resolve(__dirname, "src/cart/index.html"),
@@ -14,5 +15,26 @@ export default defineConfig({
     product: resolve(__dirname, "src/product_pages/index.html"),
   },
 }
+=======
+      input: {
+        main: resolve(__dirname, "src/index.html"),
+        cart: resolve(__dirname, "src/cart/index.html"),
+        checkout: resolve(__dirname, "src/checkout/index.html"),
+        product1: resolve(
+          __dirname,
+          "src/product_pages/cedar-ridge-rimrock-2.html",
+        ),
+        product2: resolve(__dirname, "src/product_pages/marmot-ajax-3.html"),
+        product3: resolve(
+          __dirname,
+          "src/product_pages/northface-alpine-3.html",
+        ),
+        product4: resolve(
+          __dirname,
+          "src/product_pages/northface-talus-4.html",
+        ),
+      },
+    },
+>>>>>>> 4129e2b2ffec697a2d324a8b3ef4ad6d00717968
   },
 });
