@@ -29,33 +29,32 @@ export function getParam(param) {
   return urlParams.get(param);                     // returns the value for "param"
 }
 
-export function renderListWithTemplate(
-  templateFn,
-  parentElement,
-  list,
-  position = "afterbegin",
-  clear = false
-) {
-  if (clear) {
-    parentElement.innerHTML = "";
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.innerHTML = template;
+  if (callback) {
+    callback(data);
   }
+}
 
   const htmlStrings = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
-}
+
 
 // load HTML from a file
 export async function loadTemplate(path) {
   const response = await fetch(path);
-  const html = await response.text();
-  return html;
+  const template = await response.text();
+  return template;
 }
 
 // load header and footer into the page
 export async function loadHeaderFooter() {
-  const header = await loadTemplate("/partials/header.html");
-  const footer = await loadTemplate("/partials/footer.html");
+  const headerTemplate = await loadTemplate("/partials/header.html");
+  const footerTemplate = await loadTemplate("/partials/footer.html");
 
-  qs("#main-header").innerHTML = header;
-  qs("#main-footer").innerHTML = footer;
+  const headerElement = document.querySelector("#main-header");
+  const footerElement = document.querySelector("#main-footer");
+
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
 }
