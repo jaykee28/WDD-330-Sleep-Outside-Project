@@ -1,19 +1,15 @@
-// wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
-// or a more concise version if you are into that sort of thing:
-// export const qs = (selector, parent = document) => parent.querySelector(selector);
 
-// retrieve data from localstorage
 export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
-// save data to local storage
+
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
-// set a listener for both touchend and click
+
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
     event.preventDefault();
@@ -22,11 +18,10 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
-// utils.mjs
 export function getParam(param) {
-  const queryString = window.location.search;      // gets "?product=880RR"
-  const urlParams = new URLSearchParams(queryString); // makes it easy to read params
-  return urlParams.get(param);                     // returns the value for "param"
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get(param);
 }
 
 export function renderWithTemplate(template, parentElement, data, callback) {
@@ -36,18 +31,11 @@ export function renderWithTemplate(template, parentElement, data, callback) {
   }
 }
 
-  const htmlStrings = list.map(templateFn);
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
-
-
-// load HTML from a file
 export async function loadTemplate(path) {
   const response = await fetch(path);
-  const template = await response.text();
-  return template;
+  return await response.text();
 }
 
-// load header and footer into the page
 export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate("/partials/header.html");
   const footerTemplate = await loadTemplate("/partials/footer.html");
