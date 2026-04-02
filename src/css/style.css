@@ -276,3 +276,23 @@ footer {
 .btn-checkout:hover {
   background-color: #1b5e20;
 }
+
+.categories {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 120px;
+}
+
+.category-card img {
+  width: 60px;   /* 👈 controls size */
+  height: auto;
+}

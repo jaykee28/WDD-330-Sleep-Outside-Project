@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Listing</title>
+
+    <!-- ✅ IMPORTANT: correct path -->
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="divider" id="main-header"></header>
+
+    <h1 style="color:red;">THIS IS PRODUCT LIST PAGE</h1>
+
+    <main class="divider">
+      <section class="products">
+        <h2 id="category-title">Top Products</h2>
+
+        <!-- ✅ THIS is required -->
+        <ul class="product-list"></ul>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="main-footer"></footer>
+
+    
+    <script type="module" src="/js/main.js"></script>
+
+ <footer>
+      &copy;2025 ⛺ SleepOutside ⛺ WDD 330 ⛺ BYU-Idaho for BYU-Pathway
+      Worldwide Online
+    </footer>
+  </body>
+</html>
