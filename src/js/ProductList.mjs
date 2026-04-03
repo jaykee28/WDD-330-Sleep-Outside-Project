@@ -26,7 +26,6 @@ export default class ProductList {
   }
 
  renderList(products) {
-  console.log("RENDERING PRODUCTS:", products);
   console.log("LIST ELEMENT:", this.listElement);
 
   renderWithTemplate(productCardTemplate, this.listElement, products);
