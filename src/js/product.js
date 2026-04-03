@@ -8,8 +8,8 @@ loadHeaderFooter();
 // get product id from URL
 const productId = getParam('product');
 
-// create data source
-const dataSource = new ProductData('tents');
+// create data source (FIXED)
+const dataSource = new ProductData();
 
 // create product details instance
 const product = new ProductDetails(productId, dataSource);

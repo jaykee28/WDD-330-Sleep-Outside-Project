@@ -13,22 +13,19 @@ export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
 
-// NEW: render template
-export function renderWithTemplate(template, parentElement, data, callback) {
-  parentElement.innerHTML = template;
-
-  if (callback) {
-    callback(data);
-  }
+// render list templates (for products, cart, etc.)
+export function renderWithTemplate(templateFn, parentElement, data) {
+  const html = data.map(templateFn).join('');
+  parentElement.innerHTML = html;
 }
 
-// NEW: load HTML file
+// load external HTML file (header/footer)
 export async function loadTemplate(path) {
-  const res = await fetch(path);
-  return await res.text();
+  const response = await fetch(path);
+  return await response.text();
 }
 
-// NEW: load header + footer
+// load header and footer dynamically
 export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate('/partials/header.html');
   const footerTemplate = await loadTemplate('/partials/footer.html');
@@ -37,10 +34,10 @@ export async function loadHeaderFooter() {
   const footerElement = document.querySelector('#main-footer');
 
   if (headerElement) {
-    renderWithTemplate(headerTemplate, headerElement);
+    headerElement.innerHTML = headerTemplate;
   }
 
   if (footerElement) {
-    renderWithTemplate(footerTemplate, footerElement);
+    footerElement.innerHTML = footerTemplate;
   }
 }

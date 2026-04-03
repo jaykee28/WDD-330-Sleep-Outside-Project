@@ -1,17 +1,19 @@
+const baseURL = import.meta.env.VITE_SERVER_URL;
+
 export default class ProductData {
-  constructor(category) {
-    this.category = category;
-    this.path = `/json/${this.category}.json`;
+  constructor() {
+    
   }
 
-  async getData() {
-    const response = await fetch(this.path);
+  async getData(category) {
+    const response = await fetch(`${baseURL}products/search/${category}`);
     const data = await response.json();
-    return data;
+    return data.Result;
   }
 
   async findProductById(id) {
-    const data = await this.getData();
-    return data.find((item) => item.Id === id);
+    const response = await fetch(`${baseURL}product/${id}`);
+    const data = await response.json();
+    return data;
   }
 }
