@@ -1,27 +1,27 @@
 // checkout.js
-import { getLocalStorage } from "./utils.mjs";
-import CheckoutProcess from "./CheckoutProcess.mjs";
+import { getLocalStorage } from './utils.mjs';
+import CheckoutProcess from './CheckoutProcess.mjs';
 
-const checkout = new CheckoutProcess("so-cart", "#order-summary");
+const checkout = new CheckoutProcess('so-cart', '#order-summary');
 checkout.init();
 
 // Recalculate totals after the user fills in the zip code
-const zipInput = document.querySelector("#zip");
+const zipInput = document.querySelector('#zip');
 if (zipInput) {
-  zipInput.addEventListener("input", () => {
+  zipInput.addEventListener('input', () => {
     checkout.calculateOrderTotal();
   });
 }
 // DOM elements
-const form = document.getElementById("checkoutForm");
-const summaryList = document.querySelector(".summary-list");
+const form = document.getElementById('checkoutForm');
+const summaryList = document.querySelector('.summary-list');
 
 // TAX and SHIPPING constants
 const TAX_RATE = 0.08; // 8%
 const SHIPPING_ESTIMATE = 10.0; // flat rate shipping
 
 // Get cart from localStorage
-const cartItems = getLocalStorage("so-cart") || [];
+const cartItems = getLocalStorage('so-cart') || [];
 
 // Calculate totals
 function calculateTotals(items) {
@@ -44,24 +44,24 @@ function renderSummary() {
 }
 
 // Form submission
-form.addEventListener("submit", (e) => {
+form.addEventListener('submit', (e) => {
   e.preventDefault(); // stop actual submission for now
 
   // Simple validation: check if all fields are filled
-  const inputs = form.querySelectorAll("input");
+  const inputs = form.querySelectorAll('input');
   for (let input of inputs) {
     if (!input.value.trim()) {
-      alert("Please fill out all fields.");
+      alert('Please fill out all fields.');
       input.focus();
       return;
     }
   }
 
   // Here you would normally send data to the server
-  alert("Order placed successfully!");
+  alert('Order placed successfully!');
   // Clear cart if you want
-  localStorage.removeItem("so-cart");
-  window.location.href = "/index.html"; // redirect back home
+  localStorage.removeItem('so-cart');
+  window.location.href = '/index.html'; // redirect back home
 });
 
 // Initial render
