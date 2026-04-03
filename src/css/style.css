@@ -261,3 +261,38 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.btn-checkout {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #2e7d32;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.btn-checkout:hover {
+  background-color: #1b5e20;
+}
+
+.categories {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 120px;
+}
+
+.category-card img {
+  width: 60px;   /* 👈 controls size */
+  height: auto;
+}

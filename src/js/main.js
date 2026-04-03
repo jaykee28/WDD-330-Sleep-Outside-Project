@@ -1,18 +1,20 @@
-import ProductData from "./ProductData.mjs";
-import ProductList from "./ProductList.mjs";
-import { loadHeaderFooter } from "./utils.mjs";
+import ProductData from './ProductData.mjs';
+import ProductList from './ProductList.mjs';
+import { loadHeaderFooter } from './utils.mjs';
 
-// get HTML element where products will go
-const listElement = document.querySelector(".product-list");
+document.addEventListener('DOMContentLoaded', () => {
+  // load header + footer
+  loadHeaderFooter();
 
-// create data source
-const dataSource = new ProductData("tents");
+  const listElement = document.querySelector('.product-list');
 
-// create product list instance
-const productList = new ProductList("tents", dataSource, listElement);
+  if (listElement) {
+    const category =
+      new URLSearchParams(window.location.search).get('category') || 'tents';
 
-loadHeaderFooter();
+    const dataSource = new ProductData(category);
+    const productList = new ProductList(category, dataSource, listElement);
 
-// initialize
-productList.init();
-
+    productList.init();
+  }
+});
