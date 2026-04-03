@@ -1,15 +1,14 @@
 import ProductData from './ProductData.mjs';
 import ProductList from './ProductList.mjs';
+import { loadHeaderFooter } from './utils.mjs';
 
 document.addEventListener('DOMContentLoaded', () => {
-  //console.log('MAIN IS RUNNING');
+  // load header + footer
+  loadHeaderFooter();
 
   const listElement = document.querySelector('.product-list');
 
-  //  ONLY run on product listing page
   if (listElement) {
-    //console.log('LIST PAGE DETECTED');
-
     const category =
       new URLSearchParams(window.location.search).get('category') || 'tents';
 
