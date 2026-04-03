@@ -36,6 +36,10 @@ export async function loadTemplate(path) {
   return await response.text();
 }
 
+<<<<<<< jm--individual3
+=======
+
+>>>>>>> local
 export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate("/partials/header.html");
   const footerTemplate = await loadTemplate("/partials/footer.html");
