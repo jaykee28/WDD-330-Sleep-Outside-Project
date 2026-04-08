@@ -1,5 +1,5 @@
 import { getParam, loadHeaderFooter } from './utils.mjs';
-import ProductData from './ProductData.mjs';
+import ExternalServices from './ExternalServices.mjs';
 import ProductDetails from './ProductDetails.mjs';
 
 // load header + footer
@@ -9,7 +9,7 @@ loadHeaderFooter();
 const productId = getParam('product');
 
 // create data source (FIXED)
-const dataSource = new ProductData();
+const dataSource = new ExternalServices();
 
 // create product details instance
 const product = new ProductDetails(productId, dataSource);
