@@ -77,8 +77,7 @@ export default class CheckoutProcess {
       quantity: item.quantity || 1,
     }));
   }
-
-  // Submit checkout
+  
   async checkout() {
     const form = document.getElementById('checkoutForm');
     const formData = new FormData(form);

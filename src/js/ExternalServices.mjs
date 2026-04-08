@@ -14,7 +14,6 @@ export default class ExternalServices {
     const data = await response.json();
     return data.Result;
   }
-
  
   async checkout(order) {
     const response = await fetch(`${baseURL}orders`, {

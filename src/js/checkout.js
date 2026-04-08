@@ -1,7 +1,7 @@
 import CheckoutProcess from './CheckoutProcess.mjs';
 import { loadHeaderFooter } from './utils.mjs';
 
-// load header & footer
+
 loadHeaderFooter();
 
 // create checkout instance
