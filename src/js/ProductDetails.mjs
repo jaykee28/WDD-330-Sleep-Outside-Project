@@ -30,10 +30,22 @@ export default class ProductDetails {
   }
 
   addProductToCart() {
-    const cartItems = getLocalStorage('so-cart') || [];
-    cartItems.push(this.product);
-    setLocalStorage('so-cart', cartItems);
+  const cartItems = getLocalStorage('so-cart') || [];
 
+  const existingItem = cartItems.find(
+    (item) => item.Id === this.product.Id
+  );
+
+  if (existingItem) {
+    existingItem.quantity = (existingItem.quantity || 1) + 1;
+  } else {
+    const newItem = { ...this.product, quantity: 1 };
+    cartItems.push(newItem);
+  }
+
+  setLocalStorage('so-cart', cartItems);
+
+  console.log('CART:', cartItems);
     alert(`${this.product.Name} added to cart!`);
   }
 
