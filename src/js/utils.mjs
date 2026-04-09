@@ -43,3 +43,31 @@ export async function loadHeaderFooter() {
     footerElement.innerHTML = footerTemplate;
   }
 }
+
+export function alertMessage(message, scroll = true) {
+  // create alert container
+  const alert = document.createElement('div');
+  alert.classList.add('alert');
+
+  // add content (message + close button)
+  alert.innerHTML = `
+    <span>${message}</span>
+    <button>X</button>
+  `;
+
+  // close alert when X is clicked
+  alert.addEventListener('click', function (e) {
+    if (e.target.tagName === 'BUTTON') {
+      this.remove();
+    }
+  });
+
+  // add to top of page
+  const main = document.querySelector('main');
+  main.prepend(alert);
+
+  // scroll to top so user sees it
+  if (scroll) {
+    window.scrollTo(0, 0);
+  }
+}

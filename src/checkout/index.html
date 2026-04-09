@@ -8,47 +8,44 @@
   </head>
 
   <body>
+    <header id="main-header" class="divider"></header>
 
-    <!-- MAIN CHECKOUT -->
-    <body>
-  <header id="main-header" class="divider"></header>
+    <main class="divider">
+      <h2>Checkout</h2>
 
-  <main class="divider">
-    <h2>Checkout</h2>
+      <section class="checkout-container">
+        <form id="checkoutForm">
+          <h3>Customer Information</h3>
 
-    <section class="checkout-container">
-      <form id="checkoutForm">
-        <h3>Customer Information</h3>
+          <input type="text" name="fname" placeholder="First Name" required />
+          <input type="text" name="lname" placeholder="Last Name" required />
+          <input type="text" name="street" placeholder="Street" required />
+          <input type="text" name="city" placeholder="City" required />
+          <input type="text" name="state" placeholder="State" required />
+          <input type="text" name="zip" placeholder="Zip Code" required />
 
-        <input type="text" name="fname" placeholder="First Name" required />
-        <input type="text" name="lname" placeholder="Last Name" required />
-        <input type="text" name="street" placeholder="Street" required />
-        <input type="text" name="city" placeholder="City" required />
-        <input type="text" name="state" placeholder="State" required />
-        <input type="text" name="zip" placeholder="Zip Code" required />
+          <h3>Payment Information</h3>
 
-        <h3>Payment Information</h3>
+          <input type="text" name="cardNumber" placeholder="Card Number" required />
+          <input type="text" name="expiration" placeholder="MM/YY" required />
+          <input type="text" name="code" placeholder="CVV" required />
 
-        <input type="text" name="cardNumber" placeholder="Card Number" required />
-        <input type="text" name="expiration" placeholder="MM/YY" required />
-        <input type="text" name="code" placeholder="CVV" required />
+          <button type="submit">Place Order</button>
+        </form>
 
-        <button type="submit">Place Order</button>
-      </form>
-
-      <section class="order-summary" id="order-summary">
-        <h3>Order Summary</h3>
-        <p>Items: <span id="num-items">0</span></p>
-        <p>Subtotal: <span id="subtotal">$0.00</span></p>
-        <p>Tax (6%): <span id="tax">$0.00</span></p>
-        <p>Shipping: <span id="shipping">$0.00</span></p>
-        <p><strong>Total: <span id="order-total">$0.00</span></strong></p>
+        <section class="order-summary" id="order-summary">
+          <h3>Order Summary</h3>
+          <p>Items: <span id="num-items">0</span></p>
+          <p>Subtotal: <span id="subtotal">$0.00</span></p>
+          <p>Tax (6%): <span id="tax">$0.00</span></p>
+          <p>Shipping: <span id="shipping">$0.00</span></p>
+          <p><strong>Total: <span id="order-total">$0.00</span></strong></p>
+        </section>
       </section>
-    </section>
-  </main>
+    </main>
 
-  <footer id="main-footer"></footer>
+    <footer id="main-footer"></footer>
 
-  <script type="module" src="/js/checkout.js"></script>
-</body>
+    <script type="module" src="/js/checkout.js"></script>
+  </body>
 </html>

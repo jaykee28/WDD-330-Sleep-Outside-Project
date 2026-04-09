@@ -1,5 +1,6 @@
 import { getLocalStorage } from './utils.mjs';
 import ExternalServices from './ExternalServices.mjs';
+import { alertMessage } from './utils.mjs';
 
 const services = new ExternalServices();
 
@@ -91,13 +92,15 @@ export default class CheckoutProcess {
       state: formData.get('state'),
       zip: String(formData.get('zip')),
       cardNumber: formData.get('cardNumber'),
-      expirationDate: formData.get('expiration'), 
-      cardCode: formData.get('code'),             
+      expiration: formData.get('expiration'), 
+      code: formData.get('code'),             
       items: this.packageItems(),
-      orderTotal: this.orderTotal,
-      tax: this.tax,
-      shipping: this.shipping,
+      orderTotal: this.orderTotal.toFixed(2),
+      tax: this.tax.toFixed(2),
+      shipping: this.shipping.toFixed(2),
     };
+    
+    console.log('ORDER:', order);
 
     try {
       const response = await services.checkout(order);
@@ -105,10 +108,18 @@ export default class CheckoutProcess {
 
       alert('Order placed successfully!');
       localStorage.removeItem(this.key);
-      window.location.href = '/index.html';
-    } catch (error) {
-      console.error('CHECKOUT ERROR:', error);
-      alert('Checkout failed');
+      window.location.href = '/checkout/success.html';
+    } 
+    
+    catch (err) {
+  console.error('CHECKOUT ERROR:', err);
+
+  if (err.name === 'servicesError') {
+    // show message from server
+    alertMessage(err.message.message || 'Checkout failed');
+  } else {
+    alert('Something went wrong. Please try again.');
+    }
     }
   }
 }
