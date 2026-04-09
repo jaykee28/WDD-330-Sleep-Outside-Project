@@ -8,10 +8,19 @@ loadHeaderFooter();
 const checkout = new CheckoutProcess('so-cart', '#order-summary');
 checkout.init();
 
-// form submission
 document
   .getElementById('checkoutForm')
   .addEventListener('submit', (e) => {
     e.preventDefault();
-    checkout.checkout(); 
+
+    const form = e.target;
+
+    // check if form is valid
+    if (!form.checkValidity()) {
+      form.reportValidity(); // show browser messages
+      return; // stop here
+    }
+
+    // only runs if valid
+    checkout.checkout();
   });
