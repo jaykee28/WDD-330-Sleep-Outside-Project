@@ -1,5 +1,4 @@
-import { getLocalStorage, setLocalStorage } from './utils.mjs';
-import { alertMessage } from './utils.mjs';
+import { getLocalStorage, setLocalStorage, alertMessage } from './utils.mjs';
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -21,44 +20,67 @@ export default class ProductDetails {
       // render product info
       this.renderProductDetails();
 
-      // add event listener
-      document
-        .getElementById('addToCart')
-        .addEventListener('click', this.addProductToCart.bind(this));
+      // wait for DOM to update, then attach event
+      setTimeout(() => {
+        const btn = document.getElementById('addToCart');
+
+        if (btn) {
+          btn.addEventListener('click', this.addProductToCart.bind(this));
+        } else {
+          console.error('Add to Cart button not found');
+        }
+      }, 100);
+
     } catch (error) {
       console.error('Error loading product:', error);
     }
   }
 
   addProductToCart() {
-  const cartItems = getLocalStorage('so-cart') || [];
+    const cartItems = getLocalStorage('so-cart') || [];
 
-  const existingItem = cartItems.find(
-    (item) => item.Id === this.product.Id
-  );
+    const existingItem = cartItems.find(
+      (item) => item.Id === this.product.Id
+    );
 
-  if (existingItem) {
-    existingItem.quantity = (existingItem.quantity || 1) + 1;
-  } else {
-    const newItem = { ...this.product, quantity: 1 };
-    cartItems.push(newItem);
-  }
+    if (existingItem) {
+      existingItem.quantity = (existingItem.quantity || 1) + 1;
+    } else {
+      const newItem = { ...this.product, quantity: 1 };
+      cartItems.push(newItem);
+    }
 
-  setLocalStorage('so-cart', cartItems);
+    setLocalStorage('so-cart', cartItems);
 
-  console.log('CART:', cartItems);
+    console.log('CART:', cartItems);
+
+    // ✅ Animate cart icon
+    setTimeout(() => {
+      const cartIcon = document.querySelector('.cart-icon');
+
+      if (cartIcon) {
+        cartIcon.classList.add('cart-bounce');
+
+        setTimeout(() => {
+          cartIcon.classList.remove('cart-bounce');
+        }, 400);
+      }
+    }, 100);
+
+    // ✅ Show message
     alertMessage(`${this.product.Name} added to cart!`);
   }
 
   renderProductDetails() {
-    // brand + name (FIXED)
+    // brand
     document.getElementById('productBrand').textContent =
       this.product.Brand?.Name || '';
 
+    // name
     document.getElementById('productName').textContent =
       this.product.Name;
 
-    // image (FIXED)
+    // image
     const img = document.getElementById('productImage');
     img.src = this.product.Images?.PrimaryLarge || '';
     img.alt = this.product.Name;
@@ -67,7 +89,7 @@ export default class ProductDetails {
     document.getElementById('productPrice').textContent =
       `$${this.product.FinalPrice}`;
 
-    // color (safe access)
+    // color
     document.getElementById('productColor').textContent =
       this.product.Colors?.[0]?.ColorName || '';
 
