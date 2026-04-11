@@ -14,7 +14,7 @@ async function convertToJson(res) {
         name: 'servicesError',
         message: data,
       };
-    }
+    } 
 
   } catch (e) {
     console.error ('RAW SERVER RESPONSE:', text);
